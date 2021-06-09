@@ -15,6 +15,7 @@ const postData = async (url = '', data = {})=>{
     credentials: '*',
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin:':'*'
     },
     body: JSON.stringify(data),
   });

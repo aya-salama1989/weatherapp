@@ -29,7 +29,7 @@ function onGenerateBtnClick(e){
 
 
 const getWeatherData = async(url, zip_code, api_key)=>{
-  const res = await fetch(url + zip_code + api_key);
+  // const res = await fetch(url + zip_code + api_key);
   // const res = await fetch('/fakeWeatherData')
   try {
     const data = await res.json();
