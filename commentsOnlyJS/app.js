@@ -9,13 +9,11 @@
 /* Function to POST data */
 const postData = async (url = '', data = {})=>{
   console.log(data);
-
   const response = await fetch (url, {
     method: 'POST',
-    credentials: '*',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin:':'*'
     },
     body: JSON.stringify(data),
   });
@@ -29,6 +27,6 @@ const postData = async (url = '', data = {})=>{
   }
 };
 
-postData('/postTest', {movie:' the matrix', score: 5})
+// postData('/postTest', {movie:' the matrix', score: 5})
 
 /* Function to GET Project Data */

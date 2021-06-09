@@ -1,5 +1,5 @@
 /* Global Variables */
-let baseURL = "api.openweathermap.org/data/2.5/weather?zip="
+let baseURL = "http://api.openweathermap.org/data/2.5/weather?zip="
 let appId="&appid=62db48c28406207c7acb8653397b5994"
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -17,7 +17,7 @@ function onGenerateBtnClick(e){
     document.getElementById('zipLabel').style.backgroundColor ="white";
   }else {
     getWeatherData(baseURL,zipCode,appId)
-    .then(data=>postData('/', {
+    .then(data => postData('/', {
       temp: data.main.temp,
       date: newDate,
       feelings: feelings.value,
@@ -29,7 +29,7 @@ function onGenerateBtnClick(e){
 
 
 const getWeatherData = async(url, zip_code, api_key)=>{
-  // const res = await fetch(url + zip_code + api_key);
+  const res = await fetch(url + zip_code + api_key);
   // const res = await fetch('/fakeWeatherData')
   try {
     const data = await res.json();

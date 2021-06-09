@@ -26,12 +26,12 @@ const server = app.listen(port, function (){
 });
 
 
-const testData= [];
-
-app.post('/postTest', function (req, res){
-  testData.push(req.body);
-  console.log(testData);
-});
+// const testData= [];
+//
+// app.post('/postTest', function (req, res){
+//   testData.push(req.body);
+//   console.log(testData);
+// });
 
 //routes with a callback function
 // Post Route
