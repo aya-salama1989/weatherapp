@@ -38,6 +38,9 @@ const server = app.listen(port, function (){
 const projectData ={}
 
 app.post('/addData', function (req, res){
+  console.log('server adddata red', req);
+  console.log('server adddata res', res);
+
   projectData.temp = req.body.temp;
   projectData.date = req.body.date;
   projectData.userResponse = req.body.feelings;
@@ -45,5 +48,7 @@ app.post('/addData', function (req, res){
 
 // get Route
 app.get('/all', function (req, res) {
+  console.log('server getAll red', req);
+  console.log('server getAll res', res);
   res.send(projectData);
 });

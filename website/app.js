@@ -11,19 +11,18 @@ document.getElementById('generate').addEventListener('click', onGenerateBtnClick
 function onGenerateBtnClick(e){
   let zipCode = document.getElementById('zip').value;
   if(!zipCode){
-    console.log("value= "+zipCode); //empty
-    document.getElementById('zipLabel').innerText = "Please Enter a zip code here ↓";
-    document.getElementById('zipLabel').style.color = "red";
-    document.getElementById('zipLabel').style.backgroundColor ="white";
+    handleEmptyView();
   }else {
-    getWeatherData(baseURL,zipCode,appId)
-  //   .then(data => postData('/addData', {
-  //     temp: data.main.temp,
-  //     date: newDate,
-  //     feelings: feelings.value,
-
-  //   })
-  // ).then(() => updateViews());
+    getWeatherData(baseURL, zipCode, appId)
+    .then (function(data){
+      console.log('from postData: ', data);
+      postData('/addData', {
+            temp: data.main.temp,
+            date: newDate,
+            feelings: feelings.value,
+          });
+    })
+    .then(() => updateViews());
 }
 }
 
@@ -33,24 +32,25 @@ const getWeatherData = async(url, zip_code, api_key)=>{
   console.log(url + zip_code + api_key);
   try {
     const data = await res.json();
-    console.log(data)
+    console.log('from getWeatherData: ', data);
+    return data;
   } catch(error) {
     console.log("error: ", error);
   }
 }
 
 
-const updateViews = async()=>{
+const updateViews = async() => {
   const res = await fetch('/all');
   try {
-    //TODO: set the style back to default
+    console.log("from update vise success: ", res.json());
     res.json();
   } catch (error) {
     console.log("error: ", error);
   }
 }
 
-const postData = async (url = '', data = {})=>{
+const postData = async (url = '', data = {}) => {
   console.log(data);
   const response = await fetch (url, {
     method: 'POST',
@@ -68,3 +68,10 @@ const postData = async (url = '', data = {})=>{
     console.log("error", error);
   }
 };
+
+
+function handleEmptyView(){
+    document.getElementById('zipLabel').innerText = "Please Enter a zip code here ↓";
+    document.getElementById('zipLabel').style.color = "red";
+    document.getElementById('zipLabel').style.backgroundColor ="white";
+}
