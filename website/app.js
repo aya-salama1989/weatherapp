@@ -43,7 +43,10 @@ const getWeatherData = async(url, zip_code, api_key)=>{
 const updateViews = async() => {
   const res = await fetch('/all');
   try {
-    console.log('from updateViews: ', res);
+    console.log("from all/: ", res);
+    document.getElementById('temp').innerHTML = 'Temperature: ' + res.temperature;
+    document.getElementById('date').innerHTML = 'Date: ' + res.date;
+    document.getElementById('content').innerHTML = 'Fleelings: ' + res.user_response;
   } catch (error) {
     console.log("error: ", error);
   }
@@ -56,6 +59,7 @@ const postData = async (url = '', data = {}) => {
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
+      'Access-Controll-Allow-Methods': 'POST, GET',
     },
     body: JSON.stringify(data),
   });

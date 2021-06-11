@@ -25,17 +25,9 @@ const server = app.listen(port, function (){
   console.log('server is running on port:'+ port);
 });
 
-
-// const testData= [];
-//
-// app.post('/postTest', function (req, res){
-//   testData.push(req.body);
-//   console.log(testData);
-// });
-
 //routes with a callback function
 // Post Route
-const projectData ={}
+let projectData ={}
 
 app.post('/addData', function (req, res){
   console.log('server adddata red', req);
