@@ -43,8 +43,7 @@ const getWeatherData = async(url, zip_code, api_key)=>{
 const updateViews = async() => {
   const res = await fetch('/all');
   try {
-    console.log("from update vise success: ", res.json());
-    res.json();
+    console.log('from updateViews: ', res);
   } catch (error) {
     console.log("error: ", error);
   }
