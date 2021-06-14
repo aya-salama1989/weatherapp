@@ -18,7 +18,7 @@ app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
-const port = 5501;
+const port = 8000;
 
 // Spin up the server
 const server = app.listen(port, function (){
@@ -34,9 +34,10 @@ app.post('/addData', function (req, res){
   console.log('server adddata red', req);
   console.log('server adddata res', res);
 
-  projectData.temp = req.body.temp;
-  projectData.date = req.body.date;
-  projectData.userResponse = req.body.feelings;
+  projectData["temp"] = data.temp;
+  projectData["feel"] = data.feeling;
+  projectData["date"] = data.date;
+  res.send(projectData);  
 });
 
 // get Route

@@ -16,7 +16,7 @@ function onGenerateBtnClick(e){
     getWeatherData(baseURL, zipCode, appId)
     .then (function(data){
       console.log('from postData: ', data);
-      postData('/addData', {
+      postData('http://localhost:8000/addData', {
             temp: data.main.temp,
             date: newDate,
             feelings: feelings.value,
@@ -41,7 +41,7 @@ const getWeatherData = async(url, zip_code, api_key)=>{
 
 
 const updateViews = async() => {
-  const res = await fetch('/all');
+  const res = await fetch('http://localhost:8000/all');
   try {
     console.log("from all/: ", res);
     document.getElementById('temp').innerHTML = 'Temperature: ' + res.temperature;
@@ -58,15 +58,14 @@ const postData = async (url = '', data = {}) => {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json',
-      'Access-Controll-Allow-Methods': 'POST, GET',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   try {
     console.log('data logged successfully');
-    return;
+    return data;
   }catch(error) {
     console.log("error", error);
   }
