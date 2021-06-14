@@ -43,10 +43,11 @@ const getWeatherData = async(url, zip_code, api_key)=>{
 const updateViews = async() => {
   const res = await fetch('http://localhost:8000/all');
   try {
-    console.log("from all/: ", res);
-    document.getElementById('temp').innerHTML = 'Temperature: ' + res.temperature;
-    document.getElementById('date').innerHTML = 'Date: ' + res.date;
-    document.getElementById('content').innerHTML = 'Fleelings: ' + res.user_response;
+    const allData = await res.json();
+    console.log("from all/: ", allData);
+    document.getElementById('temp').innerHTML = 'Temperature: ' + allData.temp;
+    document.getElementById('date').innerHTML = 'Date: ' + allData.date;
+    document.getElementById('content').innerHTML = 'Fleelings: ' + allData.userResponse;
   } catch (error) {
     console.log("error: ", error);
   }
@@ -58,14 +59,16 @@ const postData = async (url = '', data = {}) => {
     method: 'POST',
     credentials: 'same-origin',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Controll-Allow-Methods': 'POST, GET',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   try {
-    console.log('data logged successfully');
-    return data;
+    const newData = await response.json()
+    console.log(newData)
+    return newData
   }catch(error) {
     console.log("error", error);
   }

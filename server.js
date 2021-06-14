@@ -30,20 +30,14 @@ const server = app.listen(port, function (){
 let projectData ={}
 
 app.post('/addData', function (req, res){
-  // res.send('Post request to the homepage')
-  console.log('server adddata red', req);
-  console.log('server adddata res', res);
-
-  projectData["temp"] = data.temp;
-  projectData["feel"] = data.feeling;
-  projectData["date"] = data.date;
-  res.send(projectData);  
+  projectData.temp = req.body.temp;
+  projectData.date = req.body.date;
+  projectData.userResponse = req.body.feelings;
+  res.send(projectData);
 });
 
 // get Route
 app.get('/all', function (req, res) {
-  // res.send('GET request to the homepage')
-  console.log('server getAll red', req);
-  console.log('server getAll res', res);
   res.send(projectData);
+  console.log(projectData);
 });
