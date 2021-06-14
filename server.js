@@ -30,7 +30,7 @@ const server = app.listen(port, function (){
 let projectData ={}
 
 app.post('/addData', function (req, res){
-  res.send('Post request to the homepage')
+  // res.send('Post request to the homepage')
   console.log('server adddata red', req);
   console.log('server adddata res', res);
 
@@ -41,7 +41,7 @@ app.post('/addData', function (req, res){
 
 // get Route
 app.get('/all', function (req, res) {
-  res.send('GET request to the homepage')
+  // res.send('GET request to the homepage')
   console.log('server getAll red', req);
   console.log('server getAll res', res);
   res.send(projectData);
