@@ -1,9 +1,10 @@
 /* Global Variables */
+const appId = '&appid=62db48c28406207c7acb8653397b5994&units=metric'
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
-let appId='&appid=62db48c28406207c7acb8653397b5994'
+
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate =  d.getDate()+'-'+ (d.getMonth()+1)+'-'+d.getFullYear();
 
 
 document.getElementById('generate').addEventListener('click', onGenerateBtnClick);
@@ -45,7 +46,7 @@ const updateViews = async() => {
   try {
     const allData = await res.json();
     console.log("from all/: ", allData);
-    document.getElementById('temp').innerHTML = 'Temperature: ' + allData.temp;
+    document.getElementById('temp').innerHTML = 'Temperature: ' + allData.temp; +'&deg; C'
     document.getElementById('date').innerHTML = 'Date: ' + allData.date;
     document.getElementById('content').innerHTML = 'Fleelings: ' + allData.userResponse;
   } catch (error) {
